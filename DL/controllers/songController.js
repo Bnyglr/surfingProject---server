@@ -1,18 +1,18 @@
 require('../db').connect();
 
-const {userModel} = require('../models/userModel');
+const {songModel} = require('../models/songModel');
 
 async function create(data){
-    return await userModel.create(data);
+    return await songModel.create(data);
  }
  async function read(filter,proj){
-    return await userModel.find(filter,proj);
+    return await songModel.find(filter,proj);
  }
  async function readOne(filter,proj){
-    return await userModel.findOne(filter,proj);
+    return await songModel.findOne(filter,proj);
  }
  async function update(filter,newData){
-    return await userModel.updateOne(filter, newData);
+    return await songModel.updateOne(filter, newData);
  }
  async function del(filter){
     return await update(filter,{isActive:flase})
