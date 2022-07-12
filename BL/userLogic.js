@@ -1,11 +1,11 @@
 require('../DL/db.js').connect();
 const userController = require('../DL/controllers/userController');
-const {createToken} = require('./jwt');
+const {createToken} = require('../middleware/jwt');
 
 const login = async(user) => {
     //basic validataion
-    const { email, password, firstName, lastName } = user;
-    if (!email || !password || !firstName || !lastName)
+    const { email, password} = user;
+    if (!email || !password)
       throw { code: 400, message: "missing data" };
     //user exist?
      const eUser = await userController.readOne({email},"+password");

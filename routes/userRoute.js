@@ -1,5 +1,6 @@
 const express = require('express');
 const userLogic = require("../BL/userLogic");
+const {authJWT} = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -12,14 +13,19 @@ router.get('/login', (req, res) => {
 // });
 
 router.post("/login", async(req, res) => {
-    console.log(req.body); 
+    console.log("body: " , req.body); 
     try{
-      const token = await userLogic.login(req.body.name, req.body.password);
+      const token = await userLogic.login(req.body);
       res.send({token});
+      console.log(token);
     }catch(error){
       console.log(error.message);
       res.status(500).send("sorry. something went wrong");
     }
+  });
+
+  router.get('/user-details', authJWT, async(req,res)=>{
+    res.send("sucsess");
   });
 
 module.exports = router;

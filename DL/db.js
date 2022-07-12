@@ -1,7 +1,7 @@
 //Import the mongoose module
 const  mongoose = require ('mongoose');
 
-const MONGO_URL = 'mongodb+srv://yamar8:Mghu952!@cluster0.04nj7zh.mongodb.net/Playlist?retryWrites=true&w=majority';
+const MONGO_URL = process.env.MONGO_URL;
 
 //Set up default mongoose connection
 exports.connect = async()=>{

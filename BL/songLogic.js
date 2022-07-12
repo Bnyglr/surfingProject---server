@@ -11,7 +11,5 @@ const getAllSongs = async () => {
    return await songController.read({});
 }
 
-// addNewSong({name: "VeazTavoi"});
-
 
 module.exports = { addNewSong,getAllSongs };

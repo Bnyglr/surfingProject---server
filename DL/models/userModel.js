@@ -49,7 +49,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ["customer", "admin"],
     default: "customer"
-  }
+  },
+  playlists: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "playlist"
+}],
 });
 
 const userModel = mongoose.model("user", userSchema);
