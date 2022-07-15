@@ -8,14 +8,21 @@ router.get('/', async (req, res) => {
     res.send(songs);
 })
 
-router.post('/', async (res,req) => {
+router.post('/new', async (res,req) => {
    try{
-       songLogic.addNewSong(res.body);
-       req.send("song has been added");
+       songLogic.newSong(res.body);
+       req.send({message:"song has been added"});
    }catch(error){
 
    }
-})
+});
+
+router.post('/delete', async (res,req) => {
+    //res.body = {"_id":"62cfe48278e84712288c2d15"}
+    songLogic.deleteSong(res.body);
+    req.send({message:"song has been deleted"});
+
+});
 
 
 

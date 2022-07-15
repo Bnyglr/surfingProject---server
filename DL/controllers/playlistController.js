@@ -12,10 +12,12 @@ async function create(data){
     return await playlistModel.findOne(filter,proj);
  }
  async function update(filter,newData){
-    return await playlistModel.updateOne(filter, newData);
+    const a =  await playlistModel.updateOne(filter, newData);
+    console.log("it is happaning: ", a);
+    return a;
  }
  async function del(filter){
-    return await update(filter,{isActive:flase})
+    return await update(filter,{"$set":{"isActive":false}});
  }
  
  module.exports = {create,read,update,del,readOne};

@@ -19,13 +19,18 @@ router.post("/login", async(req, res) => {
       res.send({token});
       console.log(token);
     }catch(error){
-      console.log(error.message);
+      console.log("checked:", error.message);
       res.status(500).send("sorry. something went wrong");
     }
   });
 
   router.get('/user-details', authJWT, async(req,res)=>{
-    res.send("sucsess");
+    try{
+      const user = await userLogic.getUserById(req.id);
+      res.send(user);
+    }catch(error){
+      res.send(error.message);
+    }
   });
 
 module.exports = router;

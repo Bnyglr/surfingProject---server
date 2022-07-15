@@ -15,8 +15,8 @@ async function create(data){
     return await userModel.updateOne(filter, newData);
  }
  async function del(filter){
-    return await update(filter,{isActive:flase})
- }
+   return await update(filter,{"$set":{"isActive":false}});
+}
 
  module.exports = {create,read,update,del,readOne};
 

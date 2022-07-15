@@ -6,6 +6,10 @@ const songSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    createDate: {
+        type: Date,
+        default: Date.now,
+      },
     isActive:{
         type: Boolean,
         default: true

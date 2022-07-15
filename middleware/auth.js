@@ -7,9 +7,11 @@ const authJWT = (req, res, next) => {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.SECRET_JWT, (err, verifyToken) => {
       if (err) {
-        return res.send({code: 403, message: "not authorized"});
+        // return res.send({code: 403, message: "not authorized"});
+        return res.code(403).send("not authorized");
       }
-      req._id = verifyToken._id;
+      req.id = verifyToken.id;
+      console.log("req.id: ", req.id);
       console.log("auth: ", verifyToken);
       next();
     });
