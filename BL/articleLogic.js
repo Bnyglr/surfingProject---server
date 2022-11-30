@@ -4,9 +4,9 @@ const userController = require('../DL/controllers/userController');
 
 
 const newArticle = async (article, userId) => {
-        const {title, text} = article;
+        const {title, text, paragraphText} = article;
         console.log('userId: ', userId);
-        if(!title || !text ) throw {message: "missing data"}
+        if(!title || !text || !paragraphText) throw {message: "missing data"}
         const existArticle= await articleController.readOne({title:title})
         if (existArticle) throw {message: "the title is exist"}
         console.log('title: ', title);
@@ -19,12 +19,13 @@ const newArticle = async (article, userId) => {
 }
 
 
-const deleteArticle = async (article) => {
+const deleteArticle = async (article,userId) => {
         const {_id} = article;
         if(!_id) throw ({message: "there is missing data!"})
         const existArticle = await articleController.readOne({_id:_id})
         if(!existArticle) throw { message:"The Article is't Exist!"}
         articleController.del({_id});
+        userController.update({_id: userId},{$pull: {articles: _id}})
         console.log('The Article is Deleted 🗑.');
 
 }

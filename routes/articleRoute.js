@@ -16,15 +16,16 @@ router.post("/new",authJWT, async (req, res) => {
     await articleLogic.newArticle(req.body,req.id);
     res.send({ message: "article has been added" });
   } catch (error) {
+    console.log("again")
     console.log(error)
     res.status(403).send(error.message);
   }
 });
 
 
-router.post("/del" ,async (req, res) => {
+router.post("/del" ,authJWT,async (req, res) => {
   try {
-    await articleLogic.deleteArticle(req.body);
+    await articleLogic.deleteArticle(req.body,req.id);
     res.send({ message: "The Article was Deleted. 🗑" });
   } catch (error) {
     console.log(error)

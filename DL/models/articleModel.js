@@ -9,6 +9,12 @@ const articleSchema = new mongoose.Schema({
     text: {
         type: String
     },
+    image: {
+        type: String
+    },
+    paragraphText: {
+        type: String
+    },
     createDate: {
         type: Date,
         default: Date.now,
