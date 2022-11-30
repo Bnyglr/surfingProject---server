@@ -1,17 +1,13 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  firstName: {
+  fullName: {
     type: String,
     required: true,
   },
-  lastName: {
-    type: String,
-    required: true
-  },
   email: {
     type: String,
-    // required: true,
+    required: true,
     unique: true,
   },
   password: {
@@ -23,36 +19,13 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  phoneNumber: {
-    type: Number,
-  },
-
-  address: {
-    street: { type: String },
-    city: { type: String },
-    homeNum: { type: Number },
-  },
-  gender: {
-    type: String,
-    enum: ["male", "female"],
-  },
-  token: {
-    type: String,
-    select: false,
-    // required: true
-  },
   isActive: {
     type: Boolean,
     default: true,
   },
-  permission: {
-    type: String,
-    enum: ["customer", "admin"],
-    default: "customer"
-  },
-  playlists: [{
+  articles: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "playlist"
+    ref: "article"
 }],
 });
 

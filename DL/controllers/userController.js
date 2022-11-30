@@ -1,4 +1,3 @@
-require('../db').connect();
 
 const {userModel} = require('../models/userModel');
 
@@ -9,7 +8,7 @@ async function create(data){
     return await userModel.find(filter,proj);
  }
  async function readOne(filter,proj){
-    return await userModel.findOne(filter,proj);
+    return await userModel.findOne(filter,proj).populate({path: 'articles'})
  }
  async function update(filter,newData){
     return await userModel.updateOne(filter, newData);

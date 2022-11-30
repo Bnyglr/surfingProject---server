@@ -5,7 +5,7 @@ const {createToken} = require('../middleware/jwt');
 const login = async(user) => {
     //basic validataion
     const { email, password } = user;
-    console.log("email: ", email, "password: ", password);
+    // console.log("email: ", email, "password: ", password);
     if (!email || !password)
       throw { code: 400, message: "missing data" };
     //user exist?
@@ -19,8 +19,8 @@ const login = async(user) => {
   }
 
   const register = async (user) => {
-    const { email, password, firstName, lastName } = user;
-    if (!email || !password || !firstName || !lastName)
+    const { email, password, fullName } = user;
+    if (!email || !password ||!fullName)
       throw { code: 400, message: "missing data" };
   
     const existUser = await userController.readOne({ email });
@@ -40,4 +40,12 @@ const login = async(user) => {
     }
 
 
-  module.exports = { login,register,getUserById };
+    const getAllUserArticles = async (userId) => {
+
+      const user =  await userController.readOne({_id: userId});
+      console.log('user: ', user);
+      return user.articles;
+   }
+
+
+  module.exports = { login,register,getUserById, getAllUserArticles};

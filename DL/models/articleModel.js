@@ -1,10 +1,13 @@
 const  mongoose = require ('mongoose');
 
 
-const songSchema = new mongoose.Schema({
-    name: {
+const articleSchema = new mongoose.Schema({
+    title: {
         type: String,
         require: true
+    },
+    text: {
+        type: String
     },
     createDate: {
         type: Date,
@@ -17,7 +20,7 @@ const songSchema = new mongoose.Schema({
 });
 
 
-const songModel = mongoose.model("song",songSchema);
+const articleModel = mongoose.model("article",articleSchema);
 
 
-module.exports = {songModel};
+module.exports = {articleModel};

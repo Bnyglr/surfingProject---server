@@ -1,10 +1,12 @@
+// משתנה שקו ID של משתמש
 const { readOne } = require("../DL/controllers/userController");
+// משתנה שקורה לספריה שמיצרת לנו את התוקן
 const jwt = require("jsonwebtoken");
 
 const authJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (authHeader) {
-    const token = authHeader.split(" ")[1];
+    const token = authHeader.split(" ")[1]; // req.headers.authorization = 'bearer asjdkfljksdfsd'
     jwt.verify(token, process.env.SECRET_JWT, (err, verifyToken) => {
       if (err) {
         // return res.send({code: 403, message: "not authorized"});
@@ -20,18 +22,18 @@ const authJWT = (req, res, next) => {
   }
 };
 
-const authAdmin = async (req, res, next) => {
-  try {
-    const user = await readOne({ _id: req._id });
-    if (user.permission === "admin"){
-      next();
-    } else{
-      throw new Error(". only for admin");
-      // throw new Error({code: 401, message: "error! only for admin"});
-    }
-  } catch (error) {
-    res.status(401).send({message: error.name + error.message });
-  }
-};
+// const authAdmin = async (req, res, next) => {
+//   try {
+//     const user = await readOne({ _id: req._id });
+//     if (user.permission === "admin"){
+//       next();
+//     } else{
+//       throw new Error(". only for admin");
+//       // throw new Error({code: 401, message: "error! only for admin"});
+//     }
+//   } catch (error) {
+//     res.status(401).send({message: error.name + error.message });
+//   }
+// };
 
-module.exports = { authAdmin, authJWT };
+module.exports = {  authJWT };
