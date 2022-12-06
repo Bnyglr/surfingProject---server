@@ -7,8 +7,8 @@ const newArticle = async (article, userId) => {
         const {title, text, paragraphText} = article;
         console.log('userId: ', userId);
         if(!title || !text || !paragraphText) throw {message: "missing data"}
-        const existArticle= await articleController.readOne({title:title})
-        if (existArticle) throw {message: "the title is exist"}
+        // const existArticle= await articleController.readOne({title:title})
+        // if (existArticle) throw {message: "the title is exist"}
         console.log('title: ', title);
         console.log('text: ', text);
         const newArticle = await articleController.create(article);

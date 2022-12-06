@@ -10,7 +10,7 @@ const authJWT = (req, res, next) => {
     jwt.verify(token, process.env.SECRET_JWT, (err, verifyToken) => {
       if (err) {
         // return res.send({code: 403, message: "not authorized"});
-        return res.code(403).send("not authorized");
+        return res.send("not authorized");
       }
       req.id = verifyToken.id;
       console.log("req.id: ", req.id);

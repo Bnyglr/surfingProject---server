@@ -45,7 +45,9 @@ router.post("/login", async(req, res) => {
   });
 
   router.get("/getAllUserArticles",authJWT ,async(req, res) => {
+    
     const articles = await userLogic.getAllUserArticles(req.id)
+
     res.send(articles);
   }
   );

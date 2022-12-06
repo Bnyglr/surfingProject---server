@@ -1,5 +1,6 @@
 const express = require("express");
 const articleLogic = require("../BL/articleLogic");
+const userLogic = require("../BL/userLogic");
 const {authJWT} = require('../middleware/auth')
 
 const router = express.Router();
@@ -25,8 +26,12 @@ router.post("/new",authJWT, async (req, res) => {
 
 router.post("/del" ,authJWT,async (req, res) => {
   try {
+    //console.log()
+    console.log('req.body: ', req.body);
+    console.log('req.id: ', req.id);
     await articleLogic.deleteArticle(req.body,req.id);
-    res.send({ message: "The Article was Deleted. 🗑" });
+
+    res.send("Article has deleted!");
   } catch (error) {
     console.log(error)
     res.status(404).send(error.message);
