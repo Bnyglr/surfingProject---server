@@ -35,7 +35,7 @@ router.post("/login", async(req, res) => {
 
   router.post("/register", async(req, res) => {
     try{
-      const token = await userLogic.register(req.body);
+      const token = await userLogic.registers(req.body);
       res.send({token});
       // console.log(token);
     }catch(error){
@@ -49,8 +49,8 @@ router.post("/login", async(req, res) => {
     const articles = await userLogic.getAllUserArticles(req.id)
 
     res.send(articles);
-  }
-  );
+  });
+  
 module.exports = router;
 
 
